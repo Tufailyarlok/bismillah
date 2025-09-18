@@ -16,21 +16,20 @@ app.use(express.json());
 result();
 connectCloudinary();
 
+// ✅ Convert comma-separated env string to array
 const allowedOrigins = process.env.ALLOWED_ORIGINS
   ? process.env.ALLOWED_ORIGINS.split(",")
   : [];
 
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true); // allow Postman/curl
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    } else {
-      return callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-}));
+  app.use(cors({
+    origin: [
+      "https://bismillahadmin.vercel.app",
+      "https://bismillahfrontend.vercel.app"
+    ],
+    credentials: true,
+  }));
+  
+
 
 app.use('/api/user',userRouter);
 app.use('/api/product',productRouter);
