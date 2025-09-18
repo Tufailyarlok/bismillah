@@ -16,15 +16,21 @@ app.use(express.json());
 result();
 connectCloudinary();
 
-app.use(cors({
-    origin: ["http://localhost:5173","http://localhost:5174"], // your React app
-    credentials: true, // if you send cookies or auth headers
-  }));
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(",")
+  : [];
 
-//api endpoints
-app.get('/',(req,res)=>{
-    res.send("hello from tufail");
-})
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // allow Postman/curl
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+}));
 
 app.use('/api/user',userRouter);
 app.use('/api/product',productRouter);
