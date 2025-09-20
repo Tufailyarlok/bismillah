@@ -16,18 +16,13 @@ app.use(express.json());
 result();
 connectCloudinary();
 
-// ✅ Convert comma-separated env string to array
-const allowedOrigins = process.env.ALLOWED_ORIGINS
-  ? process.env.ALLOWED_ORIGINS.split(",")
-  : [];
+// // ✅ Convert comma-separated env string to array
+// const allowedOrigins = process.env.ALLOWED_ORIGINS
+//   ? process.env.ALLOWED_ORIGINS.split(",")
+//   : [];
 
-  app.use(cors({
-    origin: [
-      "https://bismillahadmin.vercel.app",
-      "https://bismillahfrontend.vercel.app"
-    ],
-    credentials: true,
-  }));
+app.use(cors({ origin: ["http://localhost:5173","http://localhost:5174","https://bismillahfrontend.vercel.app","https://bismillahadmin.vercel.app"], // your React app credentials: true, // if you send cookies or auth headers
+ }));
   
 
 
