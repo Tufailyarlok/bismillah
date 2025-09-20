@@ -21,7 +21,7 @@ connectCloudinary();
 //   ? process.env.ALLOWED_ORIGINS.split(",")
 //   : [];
 
-app.use(cors({ origin: ["http://localhost:5173","http://localhost:5174","https://bismillahfrontend.vercel.app","https://bismillahadmin.vercel.app"], // your React app credentials: true, // if you send cookies or auth headers
+app.use(cors({ origin: ["http://localhost:5173","http://localhost:5174","https://bismillahfrontend.vercel.app","https://bismillahadmin.vercel.app"], 
  }));
   
  app.get("/", (req, res) => {
@@ -34,8 +34,8 @@ app.use('/api/product',productRouter);
 app.use('/api/cart',cartRouter);
 app.use('/api/order',orderRouter)
 
-// app.listen(port,()=>{
-//     console.log("your app is listnening at:",port);
-// })
+app.listen(port,()=>{
+    console.log("your app is listnening at:",port);
+})
 
-export default app;
+// export default app;
