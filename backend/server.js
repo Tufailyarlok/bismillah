@@ -31,7 +31,8 @@ app.use('/api/product',productRouter);
 app.use('/api/cart',cartRouter);
 app.use('/api/order',orderRouter)
 
-app.listen(port,()=>{
-    console.log("your app is listnening at:",port);
-})
+// app.listen(port,()=>{
+//     console.log("your app is listnening at:",port);
+// })
 
+export default app;
