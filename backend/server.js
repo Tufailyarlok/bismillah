@@ -24,7 +24,10 @@ connectCloudinary();
 app.use(cors({ origin: ["http://localhost:5173","http://localhost:5174","https://bismillahfrontend.vercel.app","https://bismillahadmin.vercel.app"], // your React app credentials: true, // if you send cookies or auth headers
  }));
   
-
+ app.get("/", (req, res) => {
+    res.send("Backend is working ✅");
+  });
+  
 
 app.use('/api/user',userRouter);
 app.use('/api/product',productRouter);
