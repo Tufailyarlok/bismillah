@@ -21,9 +21,25 @@ connectCloudinary();
 //   ? process.env.ALLOWED_ORIGINS.split(",")
 //   : [];
 
-app.use(cors({ origin: ["http://localhost:5173","http://localhost:5174","https://bismillahfrontend.vercel.app","https://bismillahadmin.vercel.app"], 
- }));
-  
+const allowedOrigins = [
+  "http://localhost:5173",   // local frontend
+  "http://localhost:5174",   // local admin (if used)
+  "https://bismillahfrontend.vercel.app", // deployed frontend
+  "https://bismillahadmin.vercel.app"     // deployed admin
+];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+}));
+
+
  app.get("/", (req, res) => {
     res.send("Backend is working ");
   });
