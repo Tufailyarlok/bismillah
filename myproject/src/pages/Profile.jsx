@@ -25,7 +25,8 @@ const Profile = () => {
   return (
     <div className="p-5">
       <h1 className="text-xl font-bold mb-3">My Profile</h1>
-      <p><strong>Name:</strong> {user.name}</p>
+      {/* <p><strong>Name:</strong> {user.name}</p> */}
+      <div dangerouslySetInnerHTML={{ __html: user.name }}></div>
       <p><strong>Email:</strong> {user.email}</p>
       {/* Add more fields if needed */}
     </div>
